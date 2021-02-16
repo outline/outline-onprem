@@ -30,10 +30,6 @@ services:
       - "9000:9000"
     entrypoint: sh
     command: -c 'mkdir -p /opt/outline && /usr/bin/minio server /opt'
-    environment:
-      MINIO_ROOT_USER: AKda4c5923cfe6bce3fd13
-      MINIO_ROOT_PASSWORD: SKec709281a53213d365a2aec392c05adf5b84bf85
-      MINIO_REGION_NAME: self-hosted-1
     volumes:
       - ./opt:/data
     deploy:
@@ -48,4 +44,5 @@ services:
       - '443:443'
     links:
       - outline
+      - storage
     restart: always

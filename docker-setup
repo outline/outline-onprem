@@ -1,5 +1,7 @@
 #!/bin/bash
 
+minioAccessKeyId=$(cat /dev/urandom | base64 | head -c 64)
+minioSecretKey=$(cat /dev/urandom | base64 | head -c 64)
 postgresPassword=$(cat /dev/urandom | base64 | head -c 64)
 encryptionKey=$(cat /dev/urandom | base64 | head -c 64)
 utilsSecret=$(cat /dev/urandom | base64 | head -c 64)
@@ -44,17 +46,19 @@ echo "UTILS_SECRET=${utilsSecret}" >> docker.env
 echo '' >> docker.env
 
 echo '## Storage credentials' >> docker.env
-echo '# If you want to connect to a Postgres database on another host make sure'
-echo '# to use SSL and comment out or remove the PGSSLMODE line below'
+echo '# If you want to connect to a Postgres database on another host make sure' >> docker.env
+echo '# to use SSL and comment out or remove the PGSSLMODE line below' >> docker.env
 echo "DATABASE_URL=postgres://user:${postgresPassword}@postgres:5432/outline" >> docker.env
+echo 'PGSSLMODE=disable' >> docker.env
+echo '' >> docker.env
 echo "POSTGRES_USER=user" >> docker.env
 echo "POSTGRES_PASSWORD=${postgresPassword}" >> docker.env
-echo 'PGSSLMODE=disable' >> docker.env
 echo '' >> docker.env
 echo 'REDIS_URL=redis://redis:6379' >> docker.env
 echo '' >> docker.env
 
 echo '## Nginx server' >> docker.env
+echo "WEBSOCKET=true" >> docker.env
 if [ "$hostname" == "$publicIpAddress" ]; then
   echo "STAGE=local" >> docker.env
   echo "# Change '${hostname}' to wiki.yourcompany.com to set up SSL" >> docker.env
@@ -88,5 +92,24 @@ echo "GOOGLE_CLIENT_SECRET=" >> docker.env
 echo '' >> docker.env
 
 echo "ENABLE_UPDATES=true" >> docker.env
+echo '' >> docker.env
 
-echo "All done, to setup Google or Slack authentication take a look in docker.env"
+echo "## File Storage" => docker.env
+echo "MINIO_ROOT_USER=${minioAccessKeyId}" >> docker.env
+echo "MINIO_ROOT_PASSWORD=${minioSecretKey}" >> docker.env
+echo "MINIO_REGION_NAME=self-hosted-1" >> docker.env
+echo '' >> docker.env
+
+echo "# For details on setting up Outline to use AWS S3 instead of Minio, see:" >> docker.env
+echo "# https://wiki.generaloutline.com/share/125de1cc-9ff6-424b-8415-0d58c809a40f" >> docker.env
+echo "AWS_S3_FORCE_PATH_STYLE=true" >> docker.env
+echo "AWS_ACCESS_KEY_ID=${minioAccessKeyId}" >> docker.env
+echo "AWS_SECRET_ACCESS_KEY=${minioSecretKey}" >> docker.env
+echo "AWS_REGION=self-hosted-1" >> docker.env
+echo "AWS_S3_UPLOAD_BUCKET_URL=fully_qualified_domain_pointing_to_minio" >> docker.env
+echo "AWS_S3_UPLOAD_BUCKET_NAME=outline" >> docker.env
+echo "AWS_S3_UPLOAD_MAX_SIZE=26214400" >> docker.env
+echo "AWS_S3_ACL=private" >> docker.env
+echo '' >> docker.env
+
+echo "All done, to setup Google or Slack authentication and more take a look in docker.env"
