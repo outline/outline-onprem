@@ -1,0 +1,55 @@
+version: "3"
+services:
+
+  outline:
+    image: outline:latest
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/opt/outline
+    depends_on:
+      - postgres
+      - redis
+      - storage
+
+  redis:
+    image: redis
+    ports:
+      - "6479:6479"
+
+  postgres:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+      POSTGRES_DB: outline
+
+  storage:
+    image: minio/minio
+    ports:
+      - "9000:9000"
+    entrypoint: sh
+    command: -c 'mkdir -p /opt/outline && /usr/bin/minio server /opt'
+    environment:
+      MINIO_ROOT_USER: AKda4c5923cfe6bce3fd13
+      MINIO_ROOT_PASSWORD: SKec709281a53213d365a2aec392c05adf5b84bf85
+      MINIO_REGION_NAME: self-hosted-1
+    volumes:
+      - ./opt:/data
+    deploy:
+      restart_policy:
+        condition: on-failure
+
+  https-portal:
+    image: steveltn/https-portal
+    ports:
+      - '80:80'
+      - '443:443'
+    links:
+      - outline
+    restart: always
+    environment:
+      DOMAINS: 'test.generaloutline.com -> http://outline:3000'
+      STAGE: local # <<< Change to 'production' to use a LetsEncrypt cert
