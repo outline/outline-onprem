@@ -15,7 +15,7 @@ services:
     image: redis
     env_file: ./docker.env
     ports:
-      - "6479:6479"
+      - "6379:6379"
 
   postgres:
     image: postgres
