@@ -2,7 +2,7 @@ version: "3"
 services:
 
   outline:
-    image: outline:latest
+    image: outlinewiki/outline
     ports:
       - "3000:3000"
     volumes:

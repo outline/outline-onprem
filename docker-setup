@@ -59,7 +59,7 @@ else
 fi
 echo "# The fully qualified hostname in the following two variables must match" >> docker.env
 echo "DOMAINS=${hostname} -> http://outline:3000" >> docker.env
-echo "URL=${hostname}" >> docker.env
+echo "URL=https://${hostname}" >> docker.env
 echo '' >> docker.env
 
 echo "# Third party signin credentials, at least one of EITHER Google OR Slack is" >> docker.env
