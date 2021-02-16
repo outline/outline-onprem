@@ -3,10 +3,9 @@ services:
 
   outline:
     image: outlinewiki/outline
+    env_file: ./docker.env
     ports:
       - "3000:3000"
-    volumes:
-      - .:/opt/outline
     depends_on:
       - postgres
       - redis
@@ -14,20 +13,19 @@ services:
 
   redis:
     image: redis
+    env_file: ./docker.env
     ports:
       - "6479:6479"
 
   postgres:
     image: postgres
+    env_file: ./docker.env
     ports:
       - "5432:5432"
-    environment:
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: pass
-      POSTGRES_DB: outline
 
   storage:
     image: minio/minio
+    env_file: ./docker.env
     ports:
       - "9000:9000"
     entrypoint: sh
@@ -44,12 +42,10 @@ services:
 
   https-portal:
     image: steveltn/https-portal
+    env_file: ./docker.env
     ports:
       - '80:80'
       - '443:443'
     links:
       - outline
     restart: always
-    environment:
-      DOMAINS: 'test.generaloutline.com -> http://outline:3000'
-      STAGE: local # <<< Change to 'production' to use a LetsEncrypt cert
