@@ -46,7 +46,9 @@ echo '' >> docker.env
 echo '## Storage credentials' >> docker.env
 echo '# If you want to connect to a Postgres database on another host make sure'
 echo '# to use SSL and comment out or remove the PGSSLMODE line below'
-echo 'DATABASE_URL=postgres://user:${postgresPassword}@postgres:5432/outline' >> docker.env
+echo "DATABASE_URL=postgres://user:${postgresPassword}@postgres:5432/outline" >> docker.env
+echo "POSTGRES_USER=user" >> docker.env
+echo "POSTGRES_PASSWORD=${postgresPassword}" >> docker.env
 echo 'PGSSLMODE=disable' >> docker.env
 echo '' >> docker.env
 echo 'REDIS_URL=redis://redis:6379' >> docker.env
