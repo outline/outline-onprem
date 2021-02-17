@@ -3,8 +3,8 @@
 minioAccessKeyId=$(cat /dev/urandom | base64 | head -c 64)
 minioSecretKey=$(cat /dev/urandom | base64 | head -c 64)
 postgresPassword=$(cat /dev/urandom | base64 | head -c 64)
-encryptionKey=$(cat /dev/urandom | base64 | head -c 64)
-utilsSecret=$(cat /dev/urandom | base64 | head -c 64)
+encryptionKey=$(openssl rand -hex 32)
+utilsSecret=$(openssl rand -hex 32)
 publicIpAddress=$(dig +short myip.opendns.com @resolver1.opendns.com)
 
 echo "Hey, let's get started setting up Outline on-premise."
