@@ -29,7 +29,7 @@ services:
     ports:
       - "9000:9000"
     entrypoint: sh
-    command: -c 'mkdir -p /opt/outline && /usr/bin/minio server /opt'
+    command: -c 'mkdir -p /opt/uploads && /usr/bin/minio server /opt'
     volumes:
       - ./opt:/data
     deploy:

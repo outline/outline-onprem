@@ -107,7 +107,7 @@ echo "AWS_ACCESS_KEY_ID=${minioAccessKeyId}" >> docker.env
 echo "AWS_SECRET_ACCESS_KEY=${minioSecretKey}" >> docker.env
 echo "AWS_REGION=self-hosted-1" >> docker.env
 echo "AWS_S3_UPLOAD_BUCKET_URL=fully_qualified_domain_pointing_to_minio" >> docker.env
-echo "AWS_S3_UPLOAD_BUCKET_NAME=outline" >> docker.env
+echo "AWS_S3_UPLOAD_BUCKET_NAME=uploads" >> docker.env
 echo "AWS_S3_UPLOAD_MAX_SIZE=26214400" >> docker.env
 echo "AWS_S3_ACL=private" >> docker.env
 echo '' >> docker.env
