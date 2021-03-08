@@ -94,7 +94,7 @@ echo '' >> docker.env
 echo "ENABLE_UPDATES=true" >> docker.env
 echo '' >> docker.env
 
-echo "## File Storage" => docker.env
+echo "## File Storage" >> docker.env
 echo "MINIO_ROOT_USER=${minioAccessKeyId}" >> docker.env
 echo "MINIO_ROOT_PASSWORD=${minioSecretKey}" >> docker.env
 echo "MINIO_REGION_NAME=self-hosted-1" >> docker.env
