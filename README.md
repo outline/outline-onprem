@@ -38,3 +38,9 @@ Configure your EC2 instance and start Outline:
 1. Now you're read to start your Outline server with: `sudo docker-compose up -d`.
 1. Navigate to your server's address in a web browser. You will see a login screen with a placeholder Slack authentication method. 
 1. To configure authentication for your org, open `docker.env` and add your keys there for the identity providers you will be using.
+
+## Customizing your install
+
+Configuration for your installation of Outline is located in `docker.env`. Here, you can set up authentication (SSO and SAML), database, and file storage.
+
+If you are using your own database and file storage, you can optimize your install footprint by modifying `docker-compose.yml` and removing the dependencies on `postgres` and `minio`.
