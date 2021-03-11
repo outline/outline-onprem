@@ -44,3 +44,10 @@ Configure your EC2 instance and start Outline:
 Configuration for your installation of Outline is located in `docker.env`. Here, you can set up authentication (SSO and SAML), database, and file storage.
 
 If you are using your own database and file storage, you can optimize your install footprint by modifying `docker-compose.yml` and removing the dependencies on `postgres` and `minio`.
+
+### Configuring SAML
+
+Adding SAML to your outline install is a simple configuration change. Open `docker.env` and modify `SAML_SSO_ENDPOINT` and `SAML_CERT` to values provided by your IdP. 
+
+For an example setup guide using One Login, see the article below:
+- [One Login Setup](https://wiki.generaloutline.com/share/3942804a-3a2d-4c4c-82c4-11c7c1dcd439)
