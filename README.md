@@ -10,7 +10,7 @@
 
 ## Outline on-prem
 
-Deploy Outline on-premises to manage all of your data within your own cloud environment. You can configure many aspects of how Outline is setup within your infrastructure.
+Deploy Outline on-premises to manage all of your data within your own cloud environment. This repository contains all the necessary scripts to install and run the enterprise edition of Outline on-prem.
 
 ## Simple reference deployment (15-20 min)
 
