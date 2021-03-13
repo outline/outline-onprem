@@ -112,4 +112,8 @@ echo "AWS_S3_UPLOAD_MAX_SIZE=26214400" >> docker.env
 echo "AWS_S3_ACL=private" >> docker.env
 echo '' >> docker.env
 
-echo "All done, to setup Google or Slack authentication and more take a look in docker.env"
+echo "## Enterprise License" >> docker.env
+echo "# Obtain a license key by contacting support, hello@getoutline.com" >> docker.env
+echo "LICENSE_KEY=" >> docker.env
+
+echo "All done, to enter your license key and set up authentication take a look in docker.env"

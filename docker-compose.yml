@@ -2,7 +2,7 @@ version: "3"
 services:
 
   outline:
-    image: outlinewiki/outline
+    image: outlinewiki/outline-enterprise
     env_file: ./docker.env
     ports:
       - "3000:3000"
