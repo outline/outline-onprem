@@ -45,7 +45,7 @@ Configuration for your installation of Outline is located in `docker.env`. Here,
 
 If you are using your own database and file storage, you can optimize your install footprint by modifying `docker-compose.yml` and removing the dependencies on `postgres` and `minio`.
 
-### Configuring SAML
+## Configuring SAML
 
 Adding SAML to your outline install is a simple configuration change. Open `docker.env` and modify `SAML_SSO_ENDPOINT` and `SAML_CERT` to values provided by your IdP. 
 
