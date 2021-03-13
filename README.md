@@ -33,6 +33,7 @@ In this guide, we will walk through a simple, straightforward, setup on AWS EC2.
 1. Run `./install.sh`. This will install Docker and Docker-Compose, and initiate some configuration files.
 1. Follow the instruction prompts. You will be asked to provide your provisioned subdomain at the end of this process.
 1. Run `sudo docker-compose pull` to download images.
+1. Open the configuration file `docker.env` and add your **license key** as the value for the variable `LICENSE_KEY`. If you don't yet have a key because you're setting up a proof-of-concept or a trial, set the value to `trial`.
 1. **If you are using your own database and/or file storage**, open `docker.env` and modify the Postgres and S3 related configuration values.
 1. Run `./database-setup.sh` to initialize your database.
 1. Now you're read to start your Outline server with: `sudo docker-compose up -d`.
