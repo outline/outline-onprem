@@ -14,7 +14,9 @@ Deploy Outline on-premises to manage all of your data within your own cloud envi
 
 ## Simple reference deployment (15-20 min)
 
-In this guide, we will walk through a simple, straightforward, setup on AWS EC2. Outline comes with images for a Postgres DB instance, as well a Minio for file storage. For production deployments, we recommend you use something like RDS and S3 for these purposes.
+In this guide, we will walk through a simple, straightforward, setup on AWS EC2. Outline comes with images for a Postgres DB instance, as well a Minio for file storage. 
+
+**For production deployments, we highly recommend you use something like RDS and S3 for these purposes.** This can be done during the initial install process or configured after setup is complete.
 
 #### Spin up a new EC2 instance:
 1. Choose **Launch Instance** from the EC2 dashboard.
@@ -23,14 +25,17 @@ In this guide, we will walk through a simple, straightforward, setup on AWS EC2.
 1. Set the network security groups for ports `22`, `80`, `443`, and `3000`. Set sources set to `0.0.0.0/0` and `::/0`, and click **Review and Launch**. <img width="1420" alt="sshscreen" src="https://user-images.githubusercontent.com/427579/110394638-9eb6fa80-8021-11eb-9b2e-c0574d185a45.png">
 1. On the next screen, click **Launch** to start your instance.
 
-#### Set up your DNS:
+#### Set up your DNS and other services:
 1. Before proceeding, go to your DNS provider and provision a subdomain where you would like to locate your Outline instance. For example `wiki.mycompany.com`. Point this subdomain at the public IPv4 address of your EC2 instance. 
+1. If you're planning on using a managed database and file storage (like RDS and S3), this would be a good time to provosion those as well.
+    1. Our [setup guide for S3](https://wiki.generaloutline.com/share/125de1cc-9ff6-424b-8415-0d58c809a40f)
+    1. Our [setup guide for RDS](https://wiki.generaloutline.com/share/26fcab0c-f006-4fe6-8d1c-a710d5acd7c6)
 
 #### Configure your EC2 instance and start Outline:
 1. From your command line tool, SSH into your EC2 instance. You will need to clone this repository into your instance, so we recommend you use [SSH agent forwarding](https://docs.github.com/en/developers/overview/using-ssh-agent-forwarding)
 1. Clone this repo on your instance: `git clone git@github.com:outline/outline-onprem.git`.
 1. Go into the cloned repo directory: `cd outline-onprem`.
-1. Run `./install.sh`. This will install Docker and Docker-Compose, and initiate some configuration files.
+1. Run `./install.sh`. This will install **Docker** and **Docker Compose**, and initiate some configuration files to be edited later.
 1. Follow the instruction prompts. You will be asked to provide your provisioned subdomain at the end of this process.
 1. Run `sudo docker-compose pull` to download images.
 1. Open the configuration file `docker.env` and add your **license key** as the value for the variable `LICENSE_KEY`. If you don't yet have a key because you're setting up a proof-of-concept or a trial, set the value to `trial`.
