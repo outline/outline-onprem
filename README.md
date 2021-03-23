@@ -27,7 +27,7 @@ In this guide, we will walk through a simple, straightforward, setup on AWS EC2.
 
 #### Set up your DNS and other services:
 1. Before proceeding, go to your DNS provider and provision a subdomain where you would like to locate your Outline instance. For example `wiki.mycompany.com`. Point this subdomain at the public IPv4 address of your EC2 instance. 
-1. If you're planning on using a managed database and file storage (like RDS and S3), this would be a good time to provosion those as well.
+1. If you're planning on using a managed database and file storage (like RDS and S3), this would be a good time to provision those as well:
     1. Our [setup guide for S3](https://wiki.generaloutline.com/share/125de1cc-9ff6-424b-8415-0d58c809a40f)
     1. Our [setup guide for RDS](https://wiki.generaloutline.com/share/26fcab0c-f006-4fe6-8d1c-a710d5acd7c6)
 
