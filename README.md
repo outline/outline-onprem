@@ -35,7 +35,7 @@ In this guide, we will walk through a simple, straightforward, setup on AWS EC2.
 1. From your command line tool, SSH into your EC2 instance. You will need to clone this repository into your instance, so we recommend you use [SSH agent forwarding](https://docs.github.com/en/developers/overview/using-ssh-agent-forwarding)
 1. Clone this repo on your instance: `git clone git@github.com:outline/outline-onprem.git`.
 1. Go into the cloned repo directory: `cd outline-onprem`.
-1. Run `./install.sh`. This will install **Docker** and **Docker Compose**, and initiate some configuration files to be edited later.
+1. Run `./install.sh`. This will install **Docker** and **Docker Compose**, and initiallize some configuration files to be edited later.
 1. Follow the instruction prompts. You will be asked to provide your provisioned subdomain at the end of this process.
 1. Run `sudo docker-compose pull` to download images.
 1. Open the configuration file `docker.env` and add your **license key** as the value for the variable `LICENSE_KEY`. If you don't yet have a key because you're setting up a proof-of-concept or a trial, set the value to `trial`.
