@@ -30,11 +30,11 @@ services:
       - "9000:9000"
     entrypoint: sh
     command: -c 'mkdir -p /opt/uploads && /usr/bin/minio server /opt'
-    volumes:
-      - ./opt:/data
     deploy:
       restart_policy:
         condition: on-failure
+    volumes:
+      - minio-storage:/data
 
   https-portal:
     image: steveltn/https-portal
@@ -46,3 +46,9 @@ services:
       - outline
       - storage
     restart: always
+    volumes:
+      - https-portal-data:/var/lib/https-portal
+
+volumes:
+  https-portal-data:
+  minio-storage:

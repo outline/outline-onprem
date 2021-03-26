@@ -59,6 +59,7 @@ echo '' >> docker.env
 
 echo '## Nginx server' >> docker.env
 echo "WEBSOCKET=true" >> docker.env
+echo "ACCESS_LOG=stdout" >> docker.env
 if [ "$hostname" == "$publicIpAddress" ]; then
   echo "STAGE=local" >> docker.env
   echo "# Change '${hostname}' to wiki.yourcompany.com to set up SSL" >> docker.env
@@ -79,8 +80,8 @@ echo "# => https://api.slack.com/apps" >> docker.env
 echo '#' >> docker.env
 echo '# When configuring the Client ID, add a redirect URL under "OAuth & Permissions":' >> docker.env
 echo "# https://<URL>/auth/slack.callback" >> docker.env
-echo "SLACK_KEY=get_a_key_from_slack" >> docker.env
-echo "SLACK_SECRET=get_the_secret_of_above_key" >> docker.env
+echo "SLACK_KEY=" >> docker.env
+echo "SLACK_SECRET=" >> docker.env
 echo '' >> docker.env
 echo "# To configure Google auth, you'll need to create an OAuth Client ID at" >> docker.env
 echo "# => https://console.cloud.google.com/apis/credentials" >> docker.env
@@ -97,17 +98,18 @@ echo '' >> docker.env
 echo "## File Storage" >> docker.env
 echo "MINIO_ROOT_USER=${minioAccessKeyId}" >> docker.env
 echo "MINIO_ROOT_PASSWORD=${minioSecretKey}" >> docker.env
-echo "MINIO_REGION_NAME=self-hosted-1" >> docker.env
+echo "MINIO_REGION_NAME=us-east-1" >> docker.env
 echo '' >> docker.env
 
 echo "# For details on setting up Outline to use AWS S3 instead of Minio, see:" >> docker.env
 echo "# https://wiki.generaloutline.com/share/125de1cc-9ff6-424b-8415-0d58c809a40f" >> docker.env
+echo "# Set AWS_S3_FORCE_PATH_STYLE to true if using minio, false if using S3" >> docker.env
 echo "AWS_S3_FORCE_PATH_STYLE=true" >> docker.env
 echo "AWS_ACCESS_KEY_ID=${minioAccessKeyId}" >> docker.env
 echo "AWS_SECRET_ACCESS_KEY=${minioSecretKey}" >> docker.env
-echo "AWS_REGION=self-hosted-1" >> docker.env
-echo "AWS_S3_UPLOAD_BUCKET_URL=fully_qualified_domain_pointing_to_minio" >> docker.env
-echo "AWS_S3_UPLOAD_BUCKET_NAME=uploads" >> docker.env
+echo "AWS_REGION=us-east-1" >> docker.env
+echo "AWS_S3_UPLOAD_BUCKET_URL=https://mybucketname.s3.us-east-1.amazonaws.com" >> docker.env
+echo "AWS_S3_UPLOAD_BUCKET_NAME=mybucketname" >> docker.env
 echo "AWS_S3_UPLOAD_MAX_SIZE=26214400" >> docker.env
 echo "AWS_S3_ACL=private" >> docker.env
 echo '' >> docker.env
