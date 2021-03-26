@@ -16,12 +16,22 @@ services:
     env_file: ./docker.env
     ports:
       - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 30s
+      retries: 3
 
   postgres:
     image: postgres
     env_file: ./docker.env
     ports:
       - "5432:5432"
+    healthcheck:
+      test: ["CMD", "pg_isready -U user"]
+      interval: 30s
+      timeout: 20s
+      retries: 3
 
   storage:
     image: minio/minio
@@ -34,7 +44,12 @@ services:
       restart_policy:
         condition: on-failure
     volumes:
-      - minio-storage:/data
+      - storage-data:/data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 30s
+      timeout: 20s
+      retries: 3
 
   https-portal:
     image: steveltn/https-portal
@@ -48,7 +63,12 @@ services:
     restart: always
     volumes:
       - https-portal-data:/var/lib/https-portal
+    healthcheck:
+      test: ["CMD", "service", "nginx", "status"]
+      interval: 30s
+      timeout: 20s
+      retries: 3
 
 volumes:
   https-portal-data:
-  minio-storage:
+  storage-data:
