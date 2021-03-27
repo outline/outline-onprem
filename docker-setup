@@ -34,8 +34,14 @@ if [ -f ./docker.env ]; then
 fi
 touch docker.env
 
+echo "## Enterprise License" >> docker.env
+echo "# Obtain a license key by contacting support, hello@getoutline.com" >> docker.env
+echo "LICENSE_KEY=" >> docker.env
+echo '' >> docker.env
+
 echo '## Set node environment to production' >> docker.env
 echo 'NODE_ENV=production' >> docker.env
+echo 'DEBUG=events,emails,mailer,utils,commands,server,services' >> docker.env
 echo '' >> docker.env
 
 echo '## Encryption key for passwords etc in the database' >> docker.env
@@ -92,9 +98,6 @@ echo "GOOGLE_CLIENT_ID=" >> docker.env
 echo "GOOGLE_CLIENT_SECRET=" >> docker.env
 echo '' >> docker.env
 
-echo "ENABLE_UPDATES=true" >> docker.env
-echo '' >> docker.env
-
 echo "## File Storage" >> docker.env
 echo "MINIO_ROOT_USER=${minioAccessKeyId}" >> docker.env
 echo "MINIO_ROOT_PASSWORD=${minioSecretKey}" >> docker.env
@@ -114,8 +117,15 @@ echo "AWS_S3_UPLOAD_MAX_SIZE=26214400" >> docker.env
 echo "AWS_S3_ACL=private" >> docker.env
 echo '' >> docker.env
 
-echo "## Enterprise License" >> docker.env
-echo "# Obtain a license key by contacting support, hello@getoutline.com" >> docker.env
-echo "LICENSE_KEY=" >> docker.env
+echo "# To support sending outgoing transactional emails such as 'document updated' or"  >> docker.env
+echo "# 'youve been invited' you'll need to provide authentication for an SMTP server."  >> docker.env
+echo "# This is optional and not included in this package."  >> docker.env
+echo "SMTP_HOST=" >> docker.env
+echo "SMTP_PORT=" >> docker.env
+echo "SMTP_USERNAME=" >> docker.env
+echo "SMTP_PASSWORD=" >> docker.env
+echo "SMTP_FROM_EMAIL=" >> docker.env
+echo "SMTP_REPLY_EMAIL=" >> docker.env
+echo '' >> docker.env
 
 echo "All done, to enter your license key and set up authentication take a look in docker.env"
