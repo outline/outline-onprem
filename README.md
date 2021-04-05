@@ -57,3 +57,19 @@ Adding SAML to your outline install is a simple configuration change. Open `dock
 
 For an example setup guide using One Login, see the article below:
 - [One Login Setup](https://wiki.generaloutline.com/share/3942804a-3a2d-4c4c-82c4-11c7c1dcd439)
+
+---
+
+## Updating your instance
+
+When there is patch or an update available for Outline, you can apply the updates to your instance by stopping your server and running the included update script: `./update.sh`
+
+## Docker reference
+
+Below is a list of common Docker commands. Note that you may need to prefix with `sudo`, depending on your setup 
+
+| Command                     | Description                                                                                                                     
+| ----------------------------|-------------------------------------------------------------------------------------------------------------------------------| 
+| `docker-compose up -d`      | Builds & starts containers, and runs pending DB migrations. `-d` means "detatched", so containers to run in the background.   | 
+| `docker-compose down`       | Stops containers                                                                                                              |
+| `docker-compose logs -f`    | Stream all container logs to stdout                                                                                           |
