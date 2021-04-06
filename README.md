@@ -62,7 +62,7 @@ For an example setup guide using One Login, see the article below:
 
 ## Updating your instance
 
-When there is patch or an update available for Outline, you can apply the updates to your instance by stopping your server and running the included update script: `./update.sh`
+When there is patch or an update available for Outline, you can apply the updates to your instance by stopping your server and running the included update script: `./update.sh`. We recommend backing up your database before updating.
 
 ## Docker reference
 
@@ -70,6 +70,6 @@ Below is a list of common Docker commands. Note that you may need to prefix with
 
 | Command                     | Description                                                                                                                     
 | ----------------------------|-------------------------------------------------------------------------------------------------------------------------------| 
-| `docker-compose up -d`      | Builds & starts containers, and runs pending DB migrations. `-d` means "detatched", so containers to run in the background.   | 
+| `docker-compose up -d`      | Starts containers `-d` means "detached", so containers continue to run in the background.                                     | 
 | `docker-compose down`       | Stops containers                                                                                                              |
 | `docker-compose logs -f`    | Stream all container logs to stdout                                                                                           |
