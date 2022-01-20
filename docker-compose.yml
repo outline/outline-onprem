@@ -30,6 +30,8 @@ services:
     env_file: ./docker.env
     ports:
       - "5432:5432"
+    volumes:
+      - database-data:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD", "pg_isready -U user"]
       interval: 30s
@@ -75,3 +77,4 @@ services:
 volumes:
   https-portal-data:
   storage-data:
+  database-data:
