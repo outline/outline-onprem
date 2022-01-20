@@ -3,14 +3,14 @@
 </p>
 
 <p align="center">
-  <i>An open, extensible, wiki for your team built using React and Node.js.<br/>Try out Outline using our hosted version at <a href="https://www.getoutline.com">www.getoutline.com</a>.</i>
+  <i>An open, extensible, knowledge base for your team.<br/>Try out Outline using our hosted version at <a href="https://www.getoutline.com">www.getoutline.com</a>.</i>
 </p>
 
 <br/>
 
 ## Outline on-prem
 
-Deploy Outline on-premises to manage all of your data within your own cloud environment. This repository contains all the necessary scripts to install and run the enterprise edition of Outline on-prem.
+Deploy Outline on-premises to manage all of your data within your own cloud environment. This repository contains all the necessary scripts to install and run the enterprise edition of Outline on-prem. Please refer to the [On Premise Guide](https://wiki.generaloutline.com/share/13dec265-c002-4c73-8025-75981f29b0d0) during installation.
 
 ## Simple reference deployment (15-20 min)
 
@@ -28,8 +28,8 @@ In this guide, we will walk through a simple, straightforward, setup on AWS EC2.
 #### Set up your DNS and other services:
 1. Before proceeding, go to your DNS provider and provision a subdomain where you would like to locate your Outline instance. For example `wiki.mycompany.com`. Point this subdomain at the public IPv4 address of your EC2 instance. 
 1. If you're planning on using a managed database and file storage (like RDS and S3), this would be a good time to provision those as well:
-    1. Our [setup guide for S3](https://wiki.generaloutline.com/share/125de1cc-9ff6-424b-8415-0d58c809a40f)
-    1. Our [setup guide for RDS](https://wiki.generaloutline.com/share/26fcab0c-f006-4fe6-8d1c-a710d5acd7c6)
+    1. Our [setup guide for S3](https://wiki.generaloutline.com/share/13dec265-c002-4c73-8025-75981f29b0d0/doc/aws-s3-N4M0T6Ypu7)
+    1. Our [setup guide for RDS](https://wiki.generaloutline.com/share/13dec265-c002-4c73-8025-75981f29b0d0/doc/aws-rds-etUZYyP2jV)
 
 #### Configure your EC2 instance and start Outline:
 1. From your command line tool, SSH into your EC2 instance. You will need to clone this repository into your instance, so we recommend you use [SSH agent forwarding](https://docs.github.com/en/developers/overview/using-ssh-agent-forwarding)
@@ -56,7 +56,7 @@ If you are using your own database and file storage, you can optimize your insta
 Adding SAML to your outline install is a simple configuration change. Open `docker.env` and modify `SAML_SSO_ENDPOINT` and `SAML_CERT` to values provided by your IdP. 
 
 For an example setup guide using One Login, see the article below:
-- [One Login Setup](https://wiki.generaloutline.com/share/3942804a-3a2d-4c4c-82c4-11c7c1dcd439)
+- [One Login Setup](https://wiki.generaloutline.com/share/13dec265-c002-4c73-8025-75981f29b0d0/doc/onelogin-setup-hCmJIfmAjt)
 
 ---
 
